@@ -66,7 +66,7 @@ fun SignupScreen(navController: NavHostController) {
         }
 
 
-        TextField(
+        OutlinedTextField(
             value = username,
             onValueChange = {
                 username = it
@@ -88,7 +88,7 @@ fun SignupScreen(navController: NavHostController) {
             )
         )
 
-        TextField(
+        OutlinedTextField(
             value = phone,
             onValueChange = {
                 phone = it
@@ -110,7 +110,7 @@ fun SignupScreen(navController: NavHostController) {
             )
         )
 
-        TextField(
+        OutlinedTextField(
             value = email,
             onValueChange = {
                 email = it
@@ -132,7 +132,7 @@ fun SignupScreen(navController: NavHostController) {
             )
         )
 
-        TextField(
+        OutlinedTextField(
             value = password,
             onValueChange = {
                 password = it

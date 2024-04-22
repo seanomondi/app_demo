@@ -61,7 +61,7 @@ fun LoginScreen(navController: NavController) {
 
 
 
-        TextField(
+        OutlinedTextField(
             value = username,
             onValueChange = {
                 username = it
@@ -83,7 +83,7 @@ fun LoginScreen(navController: NavController) {
             )
         )
 
-        TextField(
+        OutlinedTextField(
             value = password,
             onValueChange = {
                 password = it

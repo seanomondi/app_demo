@@ -2,6 +2,7 @@ package net.wayv.ui.bookmarks
 
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -35,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,6 +47,7 @@ import net.wayv.navigation.ROUTE_BOOKMARKS
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_HOME
 import net.wayv.navigation.ROUTE_PROFILE
+import wayv.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,17 +68,17 @@ fun BookmarksScreen(navController: NavHostController) {
                     Text(text = "Bookmarks")
                 },
                 navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
+                    }
+                },
+                actions = {
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE){
                             popUpTo(ROUTE_BOOKMARKS){ inclusive = true }
                         }
                     }) {
                         Icon(Icons.Filled.Person, "")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -92,7 +95,22 @@ fun BookmarksScreen(navController: NavHostController) {
                 item {
                     Spacer(modifier = Modifier.height(100.dp))
 
-
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Absolute.Center
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxSize(),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                Modifier.size(150.dp)
+                            )
+                            Text(text = "   item 1")
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(100.dp))
                 }
@@ -102,6 +120,8 @@ fun BookmarksScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
                             popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
@@ -109,6 +129,8 @@ fun BookmarksScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
+
+                    Spacer(modifier = Modifier.width(30.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -118,6 +140,8 @@ fun BookmarksScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_BOOKMARKS) {
                             popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
@@ -126,6 +150,8 @@ fun BookmarksScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE) {
                             popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
@@ -133,19 +159,8 @@ fun BookmarksScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Person, contentDescription = "")
                     }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(onClick = {
-                        navController.navigate(ROUTE_EXPLORE) {
-                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
-                        }
-                    },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                    ) {
-                        Icon(imageVector = Icons.Filled.Add, contentDescription = "")
-                    }
 
+                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
 

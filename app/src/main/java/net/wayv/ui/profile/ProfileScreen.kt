@@ -65,17 +65,17 @@ fun ProfileScreen(navController: NavHostController) {
                     Text(text = "Profile")
                 },
                 navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
+                    }
+                },
+                actions = {
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE){
                             popUpTo(ROUTE_PROFILE){ inclusive = true }
                         }
                     }) {
                         Icon(Icons.Filled.Person, "")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -102,6 +102,8 @@ fun ProfileScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
                             popUpTo(ROUTE_PROFILE) { inclusive = true }
@@ -109,6 +111,8 @@ fun ProfileScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
+
+                    Spacer(modifier = Modifier.width(30.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -118,6 +122,8 @@ fun ProfileScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_BOOKMARKS) {
                             popUpTo(ROUTE_PROFILE) { inclusive = true }
@@ -126,6 +132,8 @@ fun ProfileScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE) {
                             popUpTo(ROUTE_PROFILE) { inclusive = true }
@@ -133,19 +141,8 @@ fun ProfileScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Person, contentDescription = "")
                     }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(onClick = {
-                        navController.navigate(ROUTE_EXPLORE) {
-                            popUpTo(ROUTE_PROFILE) { inclusive = true }
-                        }
-                    },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                    ) {
-                        Icon(imageVector = Icons.Filled.Add, contentDescription = "")
-                    }
 
+                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
 

@@ -78,17 +78,17 @@ fun HomeScreen(navController: NavHostController) {
                     Text(text = "Home")
                 },
                 navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
+                    }
+                },
+                actions = {
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE){
                             popUpTo(ROUTE_HOME){ inclusive = true }
                         }
                     }) {
                         Icon(Icons.Filled.Person, "")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -125,7 +125,9 @@ fun HomeScreen(navController: NavHostController) {
                             .fillMaxWidth()
                     ) {
                         item {
-                            Card {
+                            Card(
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
                                 Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
                                     Modifier.size(150.dp))
                                 Text(text = "   item 1")
@@ -157,7 +159,9 @@ fun HomeScreen(navController: NavHostController) {
                             .fillMaxWidth()
                     ) {
                         item {
-                            Card {
+                            Card(
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
                                 Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
                                     Modifier.size(150.dp))
                                 Text(text = "   item 2")
@@ -189,7 +193,9 @@ fun HomeScreen(navController: NavHostController) {
                             .fillMaxWidth()
                     ) {
                         item {
-                            Card {
+                            Card(
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
                                 Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
                                     Modifier.size(150.dp))
                                 Text(text = "   item 3")
@@ -221,7 +227,9 @@ fun HomeScreen(navController: NavHostController) {
                             .fillMaxWidth()
                     ) {
                         item {
-                            Card {
+                            Card(
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
                                 Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
                                     Modifier.size(150.dp))
                                 Text(text = "   item 4")
@@ -236,6 +244,8 @@ fun HomeScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
                             popUpTo(ROUTE_HOME) { inclusive = true }
@@ -243,6 +253,8 @@ fun HomeScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
+
+                    Spacer(modifier = Modifier.width(30.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -252,6 +264,8 @@ fun HomeScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_BOOKMARKS) {
                             popUpTo(ROUTE_HOME) { inclusive = true }
@@ -260,6 +274,8 @@ fun HomeScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE) {
                             popUpTo(ROUTE_HOME) { inclusive = true }
@@ -267,19 +283,8 @@ fun HomeScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Person, contentDescription = "")
                     }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(onClick = {
-                        navController.navigate(ROUTE_EXPLORE) {
-                            popUpTo(ROUTE_HOME) { inclusive = true }
-                        }
-                    },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                        ) {
-                            Icon(imageVector = Icons.Filled.Add, contentDescription = "")
-                    }
-                    
+
+                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
             

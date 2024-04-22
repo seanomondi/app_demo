@@ -8,9 +8,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -69,17 +72,17 @@ fun ExploreScreen(navController: NavHostController) {
                     Text(text = "Explore")
                 },
                 navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
+                    }
+                },
+                actions = {
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE){
                             popUpTo(ROUTE_EXPLORE){ inclusive = true }
                         }
                     }) {
                         Icon(Icons.Filled.Person, "")
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -90,13 +93,147 @@ fun ExploreScreen(navController: NavHostController) {
         }, content = {
             LazyColumn(
                 modifier = Modifier
+                    .padding(10.dp)
                     .fillMaxSize()
                     .background(Color.White)
             ) {
                 item {
                     Spacer(modifier = Modifier.height(100.dp))
 
+                    Row(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Visual Arts")
+                        }
 
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Performing Arts")
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Lectures & Books")
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Fashion")
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Food & Drink")
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Festivals & Fairs")
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Charities")
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Sports & Active Life")
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Nightlife")
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Kids & Family")
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(100.dp))
                 }
@@ -106,6 +243,8 @@ fun ExploreScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
                             popUpTo(ROUTE_EXPLORE) { inclusive = true }
@@ -113,6 +252,8 @@ fun ExploreScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
+
+                    Spacer(modifier = Modifier.width(30.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -122,6 +263,8 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_BOOKMARKS) {
                             popUpTo(ROUTE_EXPLORE) { inclusive = true }
@@ -130,6 +273,8 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = "")
                     }
 
+                    Spacer(modifier = Modifier.width(30.dp))
+
                     IconButton(onClick = {
                         navController.navigate(ROUTE_PROFILE) {
                             popUpTo(ROUTE_EXPLORE) { inclusive = true }
@@ -137,19 +282,8 @@ fun ExploreScreen(navController: NavHostController) {
                     }) {
                         Icon(imageVector = Icons.Default.Person, contentDescription = "")
                     }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(onClick = {
-                        navController.navigate(ROUTE_EXPLORE) {
-                            popUpTo(ROUTE_EXPLORE) { inclusive = true }
-                        }
-                    },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                    ) {
-                        Icon(imageVector = Icons.Filled.Add, contentDescription = "")
-                    }
 
+                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
 
