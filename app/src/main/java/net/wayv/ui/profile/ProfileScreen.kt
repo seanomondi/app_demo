@@ -129,7 +129,7 @@ fun ProfileScreen(navController: NavHostController) {
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.Center
             ) {
-                item {iukkmhjujh
+                item {
                     Spacer(modifier = Modifier.height(100.dp))
 
 
