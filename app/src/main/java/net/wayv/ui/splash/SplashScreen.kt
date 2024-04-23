@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import net.wayv.navigation.ROUTE_LOGIN
+import net.wayv.navigation.ROUTE_PROFILE
 import wayv.R
 
 
@@ -45,7 +46,7 @@ fun SplashScreen(navController: NavHostController) {
                     OvershootInterpolator(4f).getInterpolation(it)
                 }))
         // Customize the delay time
-        delay(2000L)
+        delay(1000L)
         navController.navigate(ROUTE_LOGIN)
     }
 

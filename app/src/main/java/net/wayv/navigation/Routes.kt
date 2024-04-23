@@ -6,8 +6,8 @@ const val ROUTE_SIGNUP = "signup"
 const val ROUTE_HOME = "home"
 const val ROUTE_EXPLORE = "explore"
 const val ROUTE_BOOKMARKS = "bookmarks"
-const val ROUTE_PROFILE ="profile"
-
+const val ROUTE_PROFILE = "profile"
+const val ROUTE_ADD_POST = "add_post"
 
 
 

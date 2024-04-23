@@ -14,6 +14,7 @@ import net.wayv.ui.auth.SignupScreen
 import net.wayv.ui.bookmarks.BookmarksScreen
 import net.wayv.ui.explore.ExploreScreen
 import net.wayv.ui.home.HomeScreen
+import net.wayv.ui.profile.AddPostScreen
 import net.wayv.ui.profile.ProfileScreen
 import net.wayv.ui.splash.SplashScreen
 
@@ -70,6 +71,10 @@ fun AppNavHost(
             ProfileScreen(navController)
         }
 
+
+        composable(ROUTE_ADD_POST) {
+            AddPostScreen(navController)
+        }
 
     }
 }
