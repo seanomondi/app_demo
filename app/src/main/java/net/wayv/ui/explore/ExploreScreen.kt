@@ -113,35 +113,8 @@ fun ExploreScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
-                            Text(text = "   Visual Arts")
-                        }
-
-                        Card(
-                            modifier = Modifier
-                                .width(125.dp)
-                                .size(100.dp),
-                            elevation = CardDefaults.cardElevation(10.dp)
-                        ) {
-                            Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Performing Arts")
                         }
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .padding(15.dp)
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Card(
-                            modifier = Modifier
-                                .width(125.dp)
-                                .size(100.dp),
-                            elevation = CardDefaults.cardElevation(10.dp)
-                        ) {
-                            Image(imageVector = Icons.Default.Info, contentDescription = "")
-                            Text(text = "   Lectures & Books")
-                        }
 
                         Card(
                             modifier = Modifier
@@ -150,7 +123,7 @@ fun ExploreScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
-                            Text(text = "   Fashion")
+                            Text(text = "   Visual Arts")
                         }
                     }
 
@@ -194,7 +167,7 @@ fun ExploreScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
-                            Text(text = "   Charities")
+                            Text(text = "   Fashion")
                         }
 
                         Card(
@@ -231,7 +204,34 @@ fun ExploreScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Lectures & Books")
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Kids & Family")
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .width(125.dp)
+                                .size(100.dp),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Image(imageVector = Icons.Default.Info, contentDescription = "")
+                            Text(text = "   Charities")
                         }
                     }
 

@@ -11,6 +11,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -51,9 +53,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import net.wayv.navigation.ROUTE_BOOKMARKS
+import net.wayv.navigation.ROUTE_CHARITIES
 import net.wayv.navigation.ROUTE_EXPLORE
+import net.wayv.navigation.ROUTE_FESTIVALS
 import net.wayv.navigation.ROUTE_HOME
 import net.wayv.navigation.ROUTE_LOGIN
+import net.wayv.navigation.ROUTE_NIGHTLIFE
+import net.wayv.navigation.ROUTE_PERFORMING_ARTS
 import net.wayv.navigation.ROUTE_PROFILE
 import net.wayv.navigation.ROUTE_SIGNUP
 import wayv.R
@@ -110,20 +116,21 @@ fun HomeScreen(navController: NavHostController) {
                         horizontalArrangement = Arrangement.Absolute.SpaceBetween
                     ) {
                         Text(
-                            text = "Text 1"
+                            text = "Performing Arts"
                         )
 
                         Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_EXPLORE) {
+                            navController.navigate(ROUTE_PERFORMING_ARTS) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
                         })
                     }
-                    
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
+
+                    LazyVerticalGrid(columns = GridCells.Fixed(6),
+                            modifier = Modifier
+                            .background(Color.White)
+                            .padding(10.dp))
+                    {
                         item {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
@@ -135,6 +142,22 @@ fun HomeScreen(navController: NavHostController) {
                         }
                     }
 
+
+//                    LazyRow(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                    ) {
+//                        item {
+//                            Card(
+//                                elevation = CardDefaults.cardElevation(10.dp)
+//                            ) {
+//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+//                                    Modifier.size(150.dp))
+//                                Text(text = "   item 1")
+//                            }
+//                        }
+//                    }
+
                     Spacer(modifier = Modifier.height(20.dp))
 
 
@@ -144,20 +167,21 @@ fun HomeScreen(navController: NavHostController) {
                         horizontalArrangement = Arrangement.Absolute.SpaceBetween
                     ) {
                         Text(
-                            text = "Text 2"
+                            text = "Festivals & Fairs"
                         )
 
                         Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_EXPLORE) {
+                            navController.navigate(ROUTE_FESTIVALS) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
                         })
                     }
 
-                    LazyRow(
+                    LazyVerticalGrid(columns = GridCells.Fixed(6),
                         modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
+                            .background(Color.White)
+                            .padding(10.dp))
+                    {
                         item {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
@@ -169,6 +193,21 @@ fun HomeScreen(navController: NavHostController) {
                         }
                     }
 
+//                    LazyRow(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                    ) {
+//                        item {
+//                            Card(
+//                                elevation = CardDefaults.cardElevation(10.dp)
+//                            ) {
+//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+//                                    Modifier.size(150.dp))
+//                                Text(text = "   item 2")
+//                            }
+//                        }
+//                    }
+
                     Spacer(modifier = Modifier.height(20.dp))
 
 
@@ -178,20 +217,21 @@ fun HomeScreen(navController: NavHostController) {
                         horizontalArrangement = Arrangement.Absolute.SpaceBetween
                     ) {
                         Text(
-                            text = "Text 3"
+                            text = "Nightlife"
                         )
 
                         Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_EXPLORE) {
+                            navController.navigate(ROUTE_NIGHTLIFE) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
                         })
                     }
 
-                    LazyRow(
+                    LazyVerticalGrid(columns = GridCells.Fixed(6),
                         modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
+                            .background(Color.White)
+                            .padding(10.dp))
+                    {
                         item {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
@@ -203,6 +243,21 @@ fun HomeScreen(navController: NavHostController) {
                         }
                     }
 
+//                    LazyRow(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                    ) {
+//                        item {
+//                            Card(
+//                                elevation = CardDefaults.cardElevation(10.dp)
+//                            ) {
+//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+//                                    Modifier.size(150.dp))
+//                                Text(text = "   item 3")
+//                            }
+//                        }
+//                    }
+
                     Spacer(modifier = Modifier.height(20.dp))
 
 
@@ -212,20 +267,21 @@ fun HomeScreen(navController: NavHostController) {
                         horizontalArrangement = Arrangement.Absolute.SpaceBetween
                     ) {
                         Text(
-                            text = "Text 4"
+                            text = "Charities"
                         )
 
                         Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_EXPLORE) {
+                            navController.navigate(ROUTE_CHARITIES) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
                         })
                     }
 
-                    LazyRow(
+                    LazyVerticalGrid(columns = GridCells.Fixed(6),
                         modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
+                            .background(Color.White)
+                            .padding(10.dp))
+                    {
                         item {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
@@ -236,6 +292,21 @@ fun HomeScreen(navController: NavHostController) {
                             }
                         }
                     }
+
+//                    LazyRow(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                    ) {
+//                        item {
+//                            Card(
+//                                elevation = CardDefaults.cardElevation(10.dp)
+//                            ) {
+//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+//                                    Modifier.size(150.dp))
+//                                Text(text = "   item 4")
+//                            }
+//                        }
+//                    }
                     Spacer(modifier = Modifier.height(100.dp))
                 }
             }

@@ -13,9 +13,14 @@ import net.wayv.ui.auth.LoginScreen
 import net.wayv.ui.auth.SignupScreen
 import net.wayv.ui.bookmarks.BookmarksScreen
 import net.wayv.ui.explore.ExploreScreen
+import net.wayv.ui.home.CharitiesScreen
+import net.wayv.ui.home.FestivalsScreen
 import net.wayv.ui.home.HomeScreen
+import net.wayv.ui.home.NightlifeScreen
+import net.wayv.ui.home.PerformingArtsScreen
 import net.wayv.ui.profile.AddPostScreen
 import net.wayv.ui.profile.ProfileScreen
+import net.wayv.ui.profile.ViewPostScreen
 import net.wayv.ui.splash.SplashScreen
 
 
@@ -75,6 +80,27 @@ fun AppNavHost(
         composable(ROUTE_ADD_POST) {
             AddPostScreen(navController)
         }
+
+        composable(ROUTE_VIEW_POST) {
+            ViewPostScreen(navController = navController, viewModel = viewModel())
+        }
+
+        composable(ROUTE_PERFORMING_ARTS) {
+            PerformingArtsScreen(navController)
+        }
+
+        composable(ROUTE_FESTIVALS) {
+            FestivalsScreen(navController)
+        }
+
+        composable(ROUTE_NIGHTLIFE) {
+            NightlifeScreen(navController)
+        }
+
+        composable(ROUTE_CHARITIES) {
+            CharitiesScreen(navController)
+        }
+
 
     }
 }
