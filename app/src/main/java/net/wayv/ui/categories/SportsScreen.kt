@@ -1,5 +1,4 @@
-package net.wayv.ui.bookmarks
-
+package net.wayv.ui.categories
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -10,18 +9,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.BottomAppBar
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -43,16 +35,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import net.wayv.navigation.ROUTE_ADD_POST
-import net.wayv.navigation.ROUTE_BOOKMARKS
 import net.wayv.navigation.ROUTE_EXPLORE
-import net.wayv.navigation.ROUTE_HOME
-import net.wayv.navigation.ROUTE_VIEW_POST
+import net.wayv.navigation.ROUTE_SPORTS
 import wayv.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BookmarksScreen(navController: NavHostController) {
+fun SportsScreen(navController: NavHostController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
@@ -65,17 +55,21 @@ fun BookmarksScreen(navController: NavHostController) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text(text = "Bookmarks")
+                    Text(text = "Sports & Active Life")
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
+                    IconButton(onClick = {
+                        navController.navigate(ROUTE_EXPLORE){
+                            popUpTo(ROUTE_SPORTS){ inclusive = true }
+                        }
+                    }) {
+                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "")
                     }
                 },
                 actions = {
                     IconButton(onClick = {
                         navController.navigate(ROUTE_ADD_POST){
-                            popUpTo(ROUTE_BOOKMARKS){ inclusive = true }
+                            popUpTo(ROUTE_SPORTS){ inclusive = true }
                         }
                     }) {
                         Icon(Icons.Filled.Add, "")
@@ -89,7 +83,6 @@ fun BookmarksScreen(navController: NavHostController) {
         }, content = {
             LazyColumn(
                 modifier = Modifier
-                    .padding(10.dp)
                     .fillMaxSize()
                     .background(Color.White)
             ) {
@@ -118,61 +111,62 @@ fun BookmarksScreen(navController: NavHostController) {
             }
 
 
-        }, bottomBar = {
-            BottomAppBar(
-                actions = {
-                    Spacer(modifier = Modifier.width(30.dp))
-
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_HOME) {
-                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
-                        }
-                    }) {
-                        Icon(imageVector = Icons.Default.Home, contentDescription = "")
-                    }
-
-                    Spacer(modifier = Modifier.width(30.dp))
-
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_EXPLORE) {
-                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
-                        }
-                    }) {
-                        Icon(imageVector = Icons.Default.Search, contentDescription = "")
-                    }
-
-                    Spacer(modifier = Modifier.width(30.dp))
-
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_BOOKMARKS) {
-                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
-                        }
-                    }) {
-                        Icon(imageVector = Icons.Default.Star, contentDescription = "")
-                    }
-
-                    Spacer(modifier = Modifier.width(30.dp))
-
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_VIEW_POST) {
-                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
-                        }
-                    }) {
-                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
-                    }
-
-                    Spacer(modifier = Modifier.width(30.dp))
-                }
-            )
-
-
         }
+//        , bottomBar = {
+//            BottomAppBar(
+//                actions = {
+//                    Spacer(modifier = Modifier.width(30.dp))
+//
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_HOME) {
+//                            popUpTo(ROUTE_CHARITIES) { inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(imageVector = Icons.Default.Home, contentDescription = "")
+//                    }
+//
+//                    Spacer(modifier = Modifier.width(30.dp))
+//
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_EXPLORE) {
+//                            popUpTo(ROUTE_CHARITIES) { inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(imageVector = Icons.Default.Search, contentDescription = "")
+//                    }
+//
+//                    Spacer(modifier = Modifier.width(30.dp))
+//
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_BOOKMARKS) {
+//                            popUpTo(ROUTE_CHARITIES) { inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(imageVector = Icons.Default.Star, contentDescription = "")
+//                    }
+//
+//                    Spacer(modifier = Modifier.width(30.dp))
+//
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_PROFILE) {
+//                            popUpTo(ROUTE_CHARITIES) { inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(imageVector = Icons.Default.Person, contentDescription = "")
+//                    }
+//
+//                    Spacer(modifier = Modifier.width(30.dp))
+//                }
+//            )
+//
+//
+//        }
     )
 
 }
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewLight() {
-    BookmarksScreen(rememberNavController())
+fun Preview8() {
+    SportsScreen(rememberNavController())
 }

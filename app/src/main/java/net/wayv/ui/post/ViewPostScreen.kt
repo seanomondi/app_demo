@@ -1,10 +1,15 @@
-package net.wayv.ui.profile
+package net.wayv.ui.post
 
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,12 +30,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavHostController
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import net.wayv.navigation.ROUTE_HOME
 import net.wayv.navigation.ROUTE_VIEW_POST
 
@@ -87,6 +92,7 @@ fun ItemList(items: List<Item>) {
 
     Column(
         modifier = Modifier
+            .fillMaxSize()
             .background(Color.White)
     ) {
 
@@ -141,7 +147,8 @@ fun ItemList(items: List<Item>) {
     }
 }
 
-
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewModel) {
     val items by viewModel.items.observeAsState(initial = emptyList())
@@ -154,7 +161,9 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
 
     Column(
         modifier = Modifier
-            .background(Color.White)
+            .fillMaxSize()
+            .background(Color.White),
+        verticalArrangement = Arrangement.Center
     ) {
 
         Text(
@@ -172,6 +181,8 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
 
 
         ItemList(items)
+
+
 
     }
 

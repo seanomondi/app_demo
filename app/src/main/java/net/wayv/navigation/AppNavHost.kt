@@ -13,14 +13,19 @@ import net.wayv.ui.auth.LoginScreen
 import net.wayv.ui.auth.SignupScreen
 import net.wayv.ui.bookmarks.BookmarksScreen
 import net.wayv.ui.explore.ExploreScreen
-import net.wayv.ui.home.CharitiesScreen
-import net.wayv.ui.home.FestivalsScreen
+import net.wayv.ui.categories.CharitiesScreen
+import net.wayv.ui.categories.FashionScreen
+import net.wayv.ui.categories.FestivalsScreen
+import net.wayv.ui.categories.FoodScreen
+import net.wayv.ui.categories.KidsScreen
+import net.wayv.ui.categories.LecturesScreen
 import net.wayv.ui.home.HomeScreen
-import net.wayv.ui.home.NightlifeScreen
-import net.wayv.ui.home.PerformingArtsScreen
-import net.wayv.ui.profile.AddPostScreen
-import net.wayv.ui.profile.ProfileScreen
-import net.wayv.ui.profile.ViewPostScreen
+import net.wayv.ui.categories.NightlifeScreen
+import net.wayv.ui.categories.PerformingArtsScreen
+import net.wayv.ui.categories.SportsScreen
+import net.wayv.ui.categories.VisualArtsScreen
+import net.wayv.ui.post.AddPostScreen
+import net.wayv.ui.post.ViewPostScreen
 import net.wayv.ui.splash.SplashScreen
 
 
@@ -72,11 +77,6 @@ fun AppNavHost(
         }
 
 
-        composable(ROUTE_PROFILE) {
-            ProfileScreen(navController)
-        }
-
-
         composable(ROUTE_ADD_POST) {
             AddPostScreen(navController)
         }
@@ -99,6 +99,30 @@ fun AppNavHost(
 
         composable(ROUTE_CHARITIES) {
             CharitiesScreen(navController)
+        }
+
+        composable(ROUTE_VISUAL_ARTS) {
+            VisualArtsScreen(navController)
+        }
+
+        composable(ROUTE_FOOD) {
+            FoodScreen(navController)
+        }
+
+        composable(ROUTE_FASHION) {
+            FashionScreen(navController)
+        }
+
+        composable(ROUTE_SPORTS) {
+            SportsScreen(navController)
+        }
+
+        composable(ROUTE_LECTURES) {
+            LecturesScreen(navController)
+        }
+
+        composable(ROUTE_KIDS) {
+            KidsScreen(navController)
         }
 
 
