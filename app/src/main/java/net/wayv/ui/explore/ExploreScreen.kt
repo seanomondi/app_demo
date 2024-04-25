@@ -16,11 +16,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
@@ -39,6 +37,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -56,8 +55,8 @@ import net.wayv.navigation.ROUTE_LECTURES
 import net.wayv.navigation.ROUTE_NIGHTLIFE
 import net.wayv.navigation.ROUTE_PERFORMING_ARTS
 import net.wayv.navigation.ROUTE_SPORTS
-import net.wayv.navigation.ROUTE_VIEW_POST
 import net.wayv.navigation.ROUTE_VISUAL_ARTS
+import wayv.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -78,9 +77,8 @@ fun ExploreScreen(navController: NavHostController) {
                     Text(text = "Explore")
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
-                    }
+                    Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "")
+
                 },
                 actions = {
                     IconButton(onClick = {
@@ -88,7 +86,7 @@ fun ExploreScreen(navController: NavHostController) {
                             popUpTo(ROUTE_EXPLORE){ inclusive = true }
                         }
                     }) {
-                        Icon(Icons.Filled.Add, "")
+                        Icon(Icons.Filled.DateRange, "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -309,7 +307,7 @@ fun ExploreScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(50.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
@@ -319,7 +317,7 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(40.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -329,7 +327,7 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(40.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_BOOKMARKS) {
@@ -339,17 +337,17 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(50.dp))
 
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_VIEW_POST) {
-                            popUpTo(ROUTE_EXPLORE) { inclusive = true }
-                        }
-                    }) {
-                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
-                    }
-
-                    Spacer(modifier = Modifier.width(30.dp))
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_VIEW_POST) {
+//                            popUpTo(ROUTE_EXPLORE) { inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
+//                    }
+//
+//                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
 

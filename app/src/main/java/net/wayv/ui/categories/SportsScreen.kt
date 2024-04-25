@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -34,7 +33,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import net.wayv.navigation.ROUTE_ADD_POST
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_SPORTS
 import wayv.R
@@ -67,13 +65,13 @@ fun SportsScreen(navController: NavHostController) {
                     }
                 },
                 actions = {
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_ADD_POST){
-                            popUpTo(ROUTE_SPORTS){ inclusive = true }
-                        }
-                    }) {
-                        Icon(Icons.Filled.Add, "")
-                    }
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_ADD_POST){
+//                            popUpTo(ROUTE_SPORTS){ inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(Icons.Filled.Add, "")
+//                    }
                 },
                 scrollBehavior = scrollBehavior,
             )

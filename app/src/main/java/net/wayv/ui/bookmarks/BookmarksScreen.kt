@@ -15,10 +15,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
@@ -46,7 +44,6 @@ import net.wayv.navigation.ROUTE_ADD_POST
 import net.wayv.navigation.ROUTE_BOOKMARKS
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_HOME
-import net.wayv.navigation.ROUTE_VIEW_POST
 import wayv.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -68,9 +65,8 @@ fun BookmarksScreen(navController: NavHostController) {
                     Text(text = "Bookmarks")
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(imageVector = Icons.Filled.Menu, contentDescription = "")
-                    }
+                    Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "")
+
                 },
                 actions = {
                     IconButton(onClick = {
@@ -78,7 +74,7 @@ fun BookmarksScreen(navController: NavHostController) {
                             popUpTo(ROUTE_BOOKMARKS){ inclusive = true }
                         }
                     }) {
-                        Icon(Icons.Filled.Add, "")
+                        Icon(Icons.Filled.DateRange, "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -121,7 +117,7 @@ fun BookmarksScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(50.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
@@ -131,7 +127,7 @@ fun BookmarksScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(40.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -141,7 +137,7 @@ fun BookmarksScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(40.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_BOOKMARKS) {
@@ -151,17 +147,17 @@ fun BookmarksScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Star, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(30.dp))
+                    Spacer(modifier = Modifier.width(50.dp))
 
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_VIEW_POST) {
-                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
-                        }
-                    }) {
-                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
-                    }
-
-                    Spacer(modifier = Modifier.width(30.dp))
+//                    IconButton(onClick = {
+//                        navController.navigate(ROUTE_VIEW_POST) {
+//                            popUpTo(ROUTE_BOOKMARKS) { inclusive = true }
+//                        }
+//                    }) {
+//                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
+//                    }
+//
+//                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
 
