@@ -10,6 +10,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -21,6 +23,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -80,10 +83,6 @@ fun AddPostScreen(navController: NavHostController) {
                     mutableStateOf("")
                 }
 
-                var eventType by rememberSaveable {
-                    mutableStateOf("")
-                }
-
 
                 var eventCategory by rememberSaveable {
                     mutableStateOf("")
@@ -131,14 +130,6 @@ fun AddPostScreen(navController: NavHostController) {
                         .fillMaxWidth()
                 )
 
-                OutlinedTextField(
-                    value = eventType,
-                    onValueChange = { eventType = it },
-                    label = { Text(text = "Type") },
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                )
 
                 OutlinedTextField(
                     value = eventCategory,
@@ -172,9 +163,12 @@ fun AddPostScreen(navController: NavHostController) {
                                 mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly
                             )
                         )
-                    }
+                    },
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth()
                 ) {
-                    Text( "Image")
+                    Text( " Add Image")
                 }
 
 
@@ -202,9 +196,11 @@ fun AddPostScreen(navController: NavHostController) {
 
 
                 OutlinedButton(onClick = {
-                    photoUri?.let { uploadImageToFirebaseStorage(it, eventName, eventLocation, eventDate, eventTime, eventType, eventCategory, eventDescription) }
+                    photoUri?.let { uploadImageToFirebaseStorage(it, eventName, eventLocation, eventDate, eventTime, eventCategory, eventDescription) }
 
-                }) {
+                },
+                    colors = ButtonDefaults.outlinedButtonColors(Color(0xFFbb8fce))
+                ) {
 
                     Text(text = "Post")
 
@@ -218,9 +214,11 @@ fun AddPostScreen(navController: NavHostController) {
                         popUpTo(ROUTE_ADD_POST) { inclusive = true }
                     }
 
-                }) {
+                },
+                    colors = ButtonDefaults.outlinedButtonColors(Color(0xFFbb8fce))
+                ) {
 
-                    Text(text = "View Post")
+                    Text(text = "View Post ->")
 
                 }
 
@@ -239,7 +237,7 @@ fun AddPostScreen(navController: NavHostController) {
 
 
 
-fun uploadImageToFirebaseStorage(imageUri: Uri, eventName: String, eventLocation: String, eventDate: String, eventTime: String, eventType: String, eventCategory: String, eventDescription: String) {
+fun uploadImageToFirebaseStorage(imageUri: Uri, eventName: String, eventLocation: String, eventDate: String, eventTime: String, eventCategory: String, eventDescription: String) {
     val storageRef = FirebaseStorage.getInstance().reference
     val imageRef = storageRef.child("images/${UUID.randomUUID()}")
 
@@ -254,7 +252,7 @@ fun uploadImageToFirebaseStorage(imageUri: Uri, eventName: String, eventLocation
     }.addOnCompleteListener { task ->
         if (task.isSuccessful) {
             val downloadUri = task.result
-            saveToFirestore(downloadUri.toString(), eventName, eventLocation, eventDate, eventTime, eventType, eventCategory, eventDescription)
+            saveToFirestore(downloadUri.toString(), eventName, eventLocation, eventDate, eventTime, eventCategory, eventDescription)
         } else {
 
 
@@ -262,7 +260,7 @@ fun uploadImageToFirebaseStorage(imageUri: Uri, eventName: String, eventLocation
     }
 }
 
-fun saveToFirestore(imageUrl: String, eventName: String, eventLocation: String, eventDate: String, eventTime: String, eventType: String, eventCategory: String, eventDescription: String) {
+fun saveToFirestore(imageUrl: String, eventName: String, eventLocation: String, eventDate: String, eventTime: String, eventCategory: String, eventDescription: String) {
     val db = Firebase.firestore
     val imageInfo = hashMapOf(
         "imageUrl" to imageUrl,
@@ -270,7 +268,6 @@ fun saveToFirestore(imageUrl: String, eventName: String, eventLocation: String, 
         "eventLocation" to eventLocation,
         "eventDate" to eventDate,
         "eventTime" to eventTime,
-        "eventType" to eventType,
         "eventCategory" to eventCategory,
         "eventDescription" to eventDescription
 

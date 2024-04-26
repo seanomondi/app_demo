@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -31,20 +32,24 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import net.wayv.navigation.ROUTE_ADD_POST
-import net.wayv.navigation.ROUTE_BOOKMARKS
 import net.wayv.navigation.ROUTE_CHARITIES
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_FASHION
@@ -56,6 +61,7 @@ import net.wayv.navigation.ROUTE_LECTURES
 import net.wayv.navigation.ROUTE_NIGHTLIFE
 import net.wayv.navigation.ROUTE_PERFORMING_ARTS
 import net.wayv.navigation.ROUTE_SPORTS
+import net.wayv.navigation.ROUTE_VIEW_POST
 import net.wayv.navigation.ROUTE_VISUAL_ARTS
 import wayv.R
 
@@ -87,7 +93,7 @@ fun ExploreScreen(navController: NavHostController) {
                             popUpTo(ROUTE_EXPLORE){ inclusive = true }
                         }
                     }) {
-                        Icon(Icons.Filled.DateRange, "")
+                        Icon(Icons.Filled.AddCircle, "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -103,8 +109,18 @@ fun ExploreScreen(navController: NavHostController) {
                     .background(Color.White)
             ) {
                 item {
-                    Spacer(modifier = Modifier.height(100.dp))
+                    Spacer(modifier = Modifier.height(80.dp))
 
+                    var searchText by remember {
+                        mutableStateOf(TextFieldValue())
+                    }
+                        TextField(value = searchText, onValueChange = { searchText = it },
+                            placeholder = { Text(text = "Search")},
+                            modifier = Modifier.fillMaxWidth(),
+                            leadingIcon = {
+                                Icon(imageVector = Icons.Default.Search, contentDescription = "")
+                            }
+                        )
 
                     Row(
                         modifier = Modifier
@@ -115,14 +131,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_PERFORMING_ARTS){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_PERFORMING_ARTS) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Performing Arts")
@@ -131,14 +147,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_VISUAL_ARTS){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_VISUAL_ARTS) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Visual Arts")
@@ -148,8 +164,8 @@ fun ExploreScreen(navController: NavHostController) {
                     Row(
                         modifier = Modifier
                             .clickable {
-                                navController.navigate(ROUTE_FOOD){
-                                    popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                navController.navigate(ROUTE_FOOD) {
+                                    popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                 }
                             }
                             .padding(15.dp)
@@ -161,7 +177,7 @@ fun ExploreScreen(navController: NavHostController) {
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Food & Drink")
@@ -170,14 +186,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_FESTIVALS){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_FESTIVALS) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Festivals & Fairs")
@@ -193,14 +209,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_FASHION){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_FASHION) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Fashion")
@@ -209,14 +225,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_SPORTS){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_SPORTS) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Sports & Active Life")
@@ -232,14 +248,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_NIGHTLIFE){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_NIGHTLIFE) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Nightlife")
@@ -248,14 +264,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_LECTURES){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_LECTURES) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Lectures & Books")
@@ -271,14 +287,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_KIDS){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_KIDS) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Kids & Family")
@@ -287,14 +303,14 @@ fun ExploreScreen(navController: NavHostController) {
                         Card(
                             modifier = Modifier
                                 .clickable {
-                                    navController.navigate(ROUTE_CHARITIES){
-                                        popUpTo(ROUTE_EXPLORE){ inclusive = true }
+                                    navController.navigate(ROUTE_CHARITIES) {
+                                        popUpTo(ROUTE_EXPLORE) { inclusive = true }
                                     }
                                 }
                                 .width(125.dp)
                                 .size(100.dp),
                             elevation = CardDefaults.cardElevation(10.dp),
-                            colors = CardDefaults.cardColors(Color(0xFF7BADE2))
+                            colors = CardDefaults.cardColors(Color(0xFFbb8fce))
                         ) {
                             Image(imageVector = Icons.Default.Info, contentDescription = "")
                             Text(text = "   Charities")
@@ -309,7 +325,7 @@ fun ExploreScreen(navController: NavHostController) {
         }, bottomBar = {
             BottomAppBar(
                 actions = {
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(55.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
@@ -319,7 +335,7 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(40.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -329,27 +345,18 @@ fun ExploreScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(40.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
                     IconButton(onClick = {
-                        navController.navigate(ROUTE_BOOKMARKS) {
+                        navController.navigate(ROUTE_VIEW_POST) {
                             popUpTo(ROUTE_EXPLORE) { inclusive = true }
                         }
                     }) {
-                        Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_VIEW_POST) {
-//                            popUpTo(ROUTE_EXPLORE) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
                 }
             )
 

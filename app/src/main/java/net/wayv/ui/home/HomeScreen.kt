@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
@@ -45,13 +46,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import net.wayv.navigation.ROUTE_ADD_POST
-import net.wayv.navigation.ROUTE_BOOKMARKS
 import net.wayv.navigation.ROUTE_CHARITIES
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_FESTIVALS
 import net.wayv.navigation.ROUTE_HOME
 import net.wayv.navigation.ROUTE_NIGHTLIFE
 import net.wayv.navigation.ROUTE_PERFORMING_ARTS
+import net.wayv.navigation.ROUTE_VIEW_POST
 import wayv.R
 
 
@@ -82,7 +83,7 @@ fun HomeScreen(navController: NavHostController) {
                             popUpTo(ROUTE_HOME){ inclusive = true }
                         }
                     }) {
-                        Icon(Icons.Filled.DateRange, "")
+                        Icon(Icons.Filled.AddCircle, "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -116,22 +117,6 @@ fun HomeScreen(navController: NavHostController) {
                         })
                     }
 
-//                    LazyVerticalGrid(columns = GridCells.Fixed(6),
-//                            modifier = Modifier
-//                            .background(Color.White)
-//                            .padding(10.dp))
-//                    {
-//                        item {
-//                            Card(
-//                                elevation = CardDefaults.cardElevation(10.dp)
-//                            ) {
-//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-//                                    Modifier.size(150.dp))
-//                                Text(text = "   item 1")
-//                            }
-//                        }
-//                    }
-
 
                     LazyRow(
                         modifier = Modifier
@@ -141,9 +126,11 @@ fun HomeScreen(navController: NavHostController) {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(150.dp))
-                                Text(text = "   item 1")
+                                Row {
+                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                        Modifier.size(150.dp))
+                                    Text(text = "   item 1")
+                                }
                             }
                         }
                     }
@@ -167,21 +154,6 @@ fun HomeScreen(navController: NavHostController) {
                         })
                     }
 
-//                    LazyVerticalGrid(columns = GridCells.Fixed(6),
-//                        modifier = Modifier
-//                            .background(Color.White)
-//                            .padding(10.dp))
-//                    {
-//                        item {
-//                            Card(
-//                                elevation = CardDefaults.cardElevation(10.dp)
-//                            ) {
-//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-//                                    Modifier.size(150.dp))
-//                                Text(text = "   item 2")
-//                            }
-//                        }
-//                    }
 
                     LazyRow(
                         modifier = Modifier
@@ -191,9 +163,11 @@ fun HomeScreen(navController: NavHostController) {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(150.dp))
-                                Text(text = "   item 2")
+                                Row {
+                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                        Modifier.size(150.dp))
+                                    Text(text = "   item 2")
+                                }
                             }
                         }
                     }
@@ -217,21 +191,6 @@ fun HomeScreen(navController: NavHostController) {
                         })
                     }
 
-//                    LazyVerticalGrid(columns = GridCells.Fixed(6),
-//                        modifier = Modifier
-//                            .background(Color.White)
-//                            .padding(10.dp))
-//                    {
-//                        item {
-//                            Card(
-//                                elevation = CardDefaults.cardElevation(10.dp)
-//                            ) {
-//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-//                                    Modifier.size(150.dp))
-//                                Text(text = "   item 3")
-//                            }
-//                        }
-//                    }
 
                     LazyRow(
                         modifier = Modifier
@@ -241,9 +200,11 @@ fun HomeScreen(navController: NavHostController) {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(150.dp))
-                                Text(text = "   item 3")
+                                Row {
+                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                        Modifier.size(150.dp))
+                                    Text(text = "   item 3")
+                                }
                             }
                         }
                     }
@@ -267,21 +228,6 @@ fun HomeScreen(navController: NavHostController) {
                         })
                     }
 
-//                    LazyVerticalGrid(columns = GridCells.Fixed(6),
-//                        modifier = Modifier
-//                            .background(Color.White)
-//                            .padding(10.dp))
-//                    {
-//                        item {
-//                            Card(
-//                                elevation = CardDefaults.cardElevation(10.dp)
-//                            ) {
-//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-//                                    Modifier.size(150.dp))
-//                                Text(text = "   item 4")
-//                            }
-//                        }
-//                    }
 
                     LazyRow(
                         modifier = Modifier
@@ -291,9 +237,11 @@ fun HomeScreen(navController: NavHostController) {
                             Card(
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(150.dp))
-                                Text(text = "   item 4")
+                                Row {
+                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                        Modifier.size(150.dp))
+                                    Text(text = "   item 4")
+                                }
                             }
                         }
                     }
@@ -306,7 +254,7 @@ fun HomeScreen(navController: NavHostController) {
         bottomBar = {
             BottomAppBar(
                 actions = {
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(55.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
@@ -316,7 +264,7 @@ fun HomeScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(40.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
@@ -326,27 +274,19 @@ fun HomeScreen(navController: NavHostController) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(40.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
                     IconButton(onClick = {
-                        navController.navigate(ROUTE_BOOKMARKS) {
+                        navController.navigate(ROUTE_VIEW_POST) {
                             popUpTo(ROUTE_HOME) { inclusive = true }
                         }
                     }) {
-                        Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_VIEW_POST) {
-//                            popUpTo(ROUTE_HOME) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
+
                 }
             )
             

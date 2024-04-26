@@ -11,7 +11,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import net.wayv.ui.auth.LoginScreen
 import net.wayv.ui.auth.SignupScreen
-import net.wayv.ui.bookmarks.BookmarksScreen
 import net.wayv.ui.explore.ExploreScreen
 import net.wayv.ui.categories.CharitiesScreen
 import net.wayv.ui.categories.FashionScreen
@@ -69,11 +68,6 @@ fun AppNavHost(
 
         composable(ROUTE_EXPLORE) {
             ExploreScreen(navController)
-        }
-
-
-        composable(ROUTE_BOOKMARKS) {
-            BookmarksScreen(navController)
         }
 
 

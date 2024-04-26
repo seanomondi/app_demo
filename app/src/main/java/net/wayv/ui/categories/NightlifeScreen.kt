@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -65,13 +66,7 @@ fun NightlifeScreen(navController: NavHostController) {
                     }
                 },
                 actions = {
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_ADD_POST){
-//                            popUpTo(ROUTE_NIGHTLIFE){ inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(Icons.Filled.Add, "")
-//                    }
+
                 },
                 scrollBehavior = scrollBehavior,
             )
@@ -97,10 +92,15 @@ fun NightlifeScreen(navController: NavHostController) {
                                 .fillMaxSize(),
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
-                            Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                Modifier.size(150.dp)
-                            )
-                            Text(text = "   item 1")
+                            Row{
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(150.dp)
+                                )
+                                Column {
+                                    Text(text = "   item 1")
+                                    Text(text = "   item 2")
+                                }
+                            }
                         }
                     }
 
@@ -110,55 +110,7 @@ fun NightlifeScreen(navController: NavHostController) {
 
 
         }
-//        , bottomBar = {
-//            BottomAppBar(
-//                actions = {
-//                    Spacer(modifier = Modifier.width(30.dp))
-//
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_HOME) {
-//                            popUpTo(ROUTE_NIGHTLIFE) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.Home, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
-//
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_EXPLORE) {
-//                            popUpTo(ROUTE_NIGHTLIFE) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.Search, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
-//
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_BOOKMARKS) {
-//                            popUpTo(ROUTE_NIGHTLIFE) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.Star, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
-//
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_PROFILE) {
-//                            popUpTo(ROUTE_NIGHTLIFE) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.Person, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
-//                }
-//            )
-//
-//
-//        }
+
     )
 
 }

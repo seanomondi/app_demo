@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
@@ -52,9 +54,9 @@ import coil.request.ImageRequest
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import net.wayv.navigation.ROUTE_ADD_POST
-import net.wayv.navigation.ROUTE_BOOKMARKS
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_HOME
+import net.wayv.navigation.ROUTE_VIEW_POST
 import wayv.R
 
 
@@ -65,7 +67,6 @@ data class Item(
     val eventLocation: String? = "",
     val eventDate: String? = "",
     val eventTime: String? = "",
-    val eventType: String? = "",
     val eventCategory: String? = "",
     val eventDescription: String? = ""
 
@@ -93,7 +94,7 @@ class FirestoreViewModel : ViewModel() {
 
             val itemList = mutableListOf<Item>()
             snapshot?.documents?.forEach { document ->
-                val item = document.toObject(Item::class.java)?.copy(eventType = document.id)
+                val item = document.toObject(Item::class.java)?.copy(eventName = document.id)
                 item?.let {
                     itemList.add(it)
                 }
@@ -118,7 +119,7 @@ fun ItemList(items: List<Item>) {
 
 
         LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
+            columns = GridCells.Fixed(1),
             modifier = Modifier
                 .background(Color.White)
                 .padding(10.dp)
@@ -132,29 +133,32 @@ fun ItemList(items: List<Item>) {
                         elevation = CardDefaults.cardElevation(10.dp)
                     ) {
 
+                        Row {
+                            SubcomposeAsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data(item.imageUrl)
+                                    .crossfade(true)
+                                    .build(),
+                                loading = {
+                                    CircularProgressIndicator()
+                                },
+                                contentDescription = item.eventName,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(10))
+                                    .size(150.dp)
+                            )
 
-                        SubcomposeAsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data(item.imageUrl)
-                                .crossfade(true)
-                                .build(),
-                            loading = {
-                                CircularProgressIndicator()
-                            },
-                            contentDescription = item.eventName,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(10))
-                                .size(150.dp)
-                        )
+                            Column {
+                                item.eventName?.let { Text(text = it) }
+                                item.eventLocation?.let { Text(text = it) }
+                                item.eventDate?.let { Text(text = it) }
+                                item.eventTime?.let { Text(text = it) }
+                                item.eventCategory?.let { Text(text = it) }
+                                item.eventDescription?.let { Text(text = it) }
+                            }
+                        }
 
-                        item.eventName?.let { Text(text = it) }
-                        item.eventLocation?.let { Text(text = it) }
-                        item.eventDate?.let { Text(text = it) }
-                        item.eventTime?.let { Text(text = it) }
-                        item.eventType?.let { Text(text = it) }
-                        item.eventCategory?.let { Text(text = it) }
-                        item.eventDescription?.let { Text(text = it) }
 
                     }
 
@@ -189,7 +193,7 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text(text = "Home")
+                    Text(text = "Posts")
                 },
                 navigationIcon = {
                     Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "")
@@ -198,10 +202,10 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
                 actions = {
                     IconButton(onClick = {
                         navController.navigate(ROUTE_ADD_POST){
-                            popUpTo(ROUTE_HOME){ inclusive = true }
+                            popUpTo(ROUTE_VIEW_POST){ inclusive = true }
                         }
                     }) {
-                        Icon(Icons.Filled.DateRange, "")
+                        Icon(Icons.Filled.AddCircle, "")
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -216,37 +220,37 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
         bottomBar = {
             BottomAppBar(
                 actions = {
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(55.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_HOME) {
-                            popUpTo(ROUTE_HOME) { inclusive = true }
+                            popUpTo(ROUTE_VIEW_POST) { inclusive = true }
                         }
                     }) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(40.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
                     IconButton(onClick = {
                         navController.navigate(ROUTE_EXPLORE) {
-                            popUpTo(ROUTE_HOME) { inclusive = true }
+                            popUpTo(ROUTE_VIEW_POST) { inclusive = true }
                         }
                     }) {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(40.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
                     IconButton(onClick = {
-                        navController.navigate(ROUTE_BOOKMARKS) {
-                            popUpTo(ROUTE_HOME) { inclusive = true }
+                        navController.navigate(ROUTE_VIEW_POST) {
+                            popUpTo(ROUTE_VIEW_POST) { inclusive = true }
                         }
                     }) {
-                        Icon(imageVector = Icons.Default.Star, contentDescription = "")
+                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
                     }
 
-                    Spacer(modifier = Modifier.width(50.dp))
+                    Spacer(modifier = Modifier.width(45.dp))
 
 //                    IconButton(onClick = {
 //                        navController.navigate(ROUTE_VIEW_POST) {
