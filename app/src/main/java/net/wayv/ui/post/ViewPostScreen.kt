@@ -4,13 +4,17 @@ package net.wayv.ui.post
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -44,6 +48,8 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -114,49 +120,49 @@ fun ItemList(items: List<Item>) {
             .fillMaxSize()
             .background(Color.White)
     ) {
+        Spacer(modifier = Modifier.height(80.dp))
 
-        Text(text = "ALL EVENTS")
+        Text(text = "ALL EVENTS", fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
 
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             modifier = Modifier
                 .background(Color.White)
-                .padding(10.dp)
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Center
         ) {
 
             items.forEach { item ->
                 item {
                     Card(
                         modifier = Modifier
-                            .background(Color.White),
-                        elevation = CardDefaults.cardElevation(10.dp)
+                            .background(Color.White)
                     ) {
 
-                        Row {
-                            SubcomposeAsyncImage(
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data(item.imageUrl)
-                                    .crossfade(true)
-                                    .build(),
-                                loading = {
-                                    CircularProgressIndicator()
-                                },
-                                contentDescription = item.eventName,
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(10))
-                                    .size(150.dp)
-                            )
+                        SubcomposeAsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(item.imageUrl)
+                                .crossfade(true)
+                                .build(),
+                            loading = {
+                                CircularProgressIndicator()
+                            },
+                            contentDescription = item.eventName,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(10))
+                                .fillMaxWidth()
+                                .height(200.dp)
+                        )
 
-                            Column {
-                                item.eventName?.let { Text(text = it) }
-                                item.eventLocation?.let { Text(text = it) }
-                                item.eventDate?.let { Text(text = it) }
-                                item.eventTime?.let { Text(text = it) }
-                                item.eventCategory?.let { Text(text = it) }
-                                item.eventDescription?.let { Text(text = it) }
-                            }
+                        Column {
+                            item.eventName?.let { Text(text = it) }
+                            item.eventLocation?.let { Text(text = it) }
+                            item.eventDate?.let { Text(text = it) }
+                            item.eventTime?.let { Text(text = it) }
+                            item.eventCategory?.let { Text(text = it) }
+                            item.eventDescription?.let { Text(text = it) }
                         }
 
 
@@ -167,6 +173,8 @@ fun ItemList(items: List<Item>) {
 
 
         }
+
+        Spacer(modifier = Modifier.height(80.dp))
     }
 }
 
@@ -215,7 +223,9 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
 
         },
         content = {
+
             ItemList(items)
+
         },
         bottomBar = {
             BottomAppBar(

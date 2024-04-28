@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
@@ -35,6 +37,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -48,11 +54,16 @@ import androidx.navigation.compose.rememberNavController
 import net.wayv.navigation.ROUTE_ADD_POST
 import net.wayv.navigation.ROUTE_CHARITIES
 import net.wayv.navigation.ROUTE_EXPLORE
+import net.wayv.navigation.ROUTE_FASHION
 import net.wayv.navigation.ROUTE_FESTIVALS
+import net.wayv.navigation.ROUTE_FOOD
 import net.wayv.navigation.ROUTE_HOME
+import net.wayv.navigation.ROUTE_LECTURES
 import net.wayv.navigation.ROUTE_NIGHTLIFE
 import net.wayv.navigation.ROUTE_PERFORMING_ARTS
+import net.wayv.navigation.ROUTE_SPORTS
 import net.wayv.navigation.ROUTE_VIEW_POST
+import net.wayv.navigation.ROUTE_VISUAL_ARTS
 import wayv.R
 
 
@@ -100,153 +111,238 @@ fun HomeScreen(navController: NavHostController) {
                     .background(Color.White)
             ) {
                 item {
-                    Spacer(modifier = Modifier.height(100.dp))
+                    Spacer(modifier = Modifier.height(80.dp))
+
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Absolute.SpaceBetween
-                    ) {
-                        Text(
-                            text = "Performing Arts"
-                        )
-
-                        Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_PERFORMING_ARTS) {
-                                popUpTo(ROUTE_HOME) { inclusive = true }
-                            }
-                        })
-                    }
-
-
-                    LazyRow(
-                        modifier = Modifier
                             .fillMaxWidth()
-                    ) {
-                        item {
-                            Card(
-                                elevation = CardDefaults.cardElevation(10.dp)
-                            ) {
-                                Row {
-                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                        Modifier.size(150.dp))
-                                    Text(text = "   item 1")
-                                }
-                            }
-                        }
+                            .background(Color.Black)
+                            .padding(10.dp)
+                    ){
+                        Image(painter = painterResource(id = R.drawable.discover), contentDescription = "",
+                            modifier = Modifier
+                                .height(200.dp)
+                                .fillMaxWidth()
+                        )
                     }
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(15.dp))
 
 
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Absolute.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "Festivals & Fairs"
+                            text = "Event Categories"
                         )
 
                         Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_FESTIVALS) {
+                            navController.navigate(ROUTE_EXPLORE) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
                         })
                     }
 
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     LazyRow(
                         modifier = Modifier
+                            .padding(5.dp)
                             .fillMaxWidth()
                     ) {
                         item {
-                            Card(
+                            Card(onClick = {
+                                navController.navigate(ROUTE_FASHION) {
+                                    popUpTo(ROUTE_HOME) { inclusive = true }
+                                }
+                            },
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Row {
-                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                        Modifier.size(150.dp))
-                                    Text(text = "   item 2")
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp))
+                                Text(text = "   Fashion")
+                            }
+
+                            Spacer(modifier = Modifier.width(10.dp))
+
+                            Card(onClick = {
+                                navController.navigate(ROUTE_FOOD) {
+                                    popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
+                            },
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp))
+                                Text(text = "   Food & Drink")
+                            }
+
+                            Spacer(modifier = Modifier.width(10.dp))
+
+
+                            Card(onClick = {
+                                navController.navigate(ROUTE_LECTURES) {
+                                    popUpTo(ROUTE_HOME) { inclusive = true }
+                                }
+                            },
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp))
+                                Text(text = "   Lectures & Books")
+                            }
+
+                            Spacer(modifier = Modifier.width(10.dp))
+
+                            Card(onClick = {
+                                navController.navigate(ROUTE_CHARITIES) {
+                                    popUpTo(ROUTE_HOME) { inclusive = true }
+                                }
+                            },
+                                elevation = CardDefaults.cardElevation(10.dp)
+                            ) {
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp))
+                                Text(text = "   Charities")
                             }
                         }
+
                     }
 
-                    Spacer(modifier = Modifier.height(20.dp))
+
+
+                    Spacer(modifier = Modifier.height(15.dp))
 
 
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Absolute.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = "Nightlife"
+                            text = "Upcoming Events"
                         )
 
                         Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_NIGHTLIFE) {
+                            navController.navigate(ROUTE_VIEW_POST) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
                         })
                     }
 
-
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        item {
-                            Card(
-                                elevation = CardDefaults.cardElevation(10.dp)
-                            ) {
-                                Row {
-                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                        Modifier.size(150.dp))
-                                    Text(text = "   item 3")
-                                }
-                            }
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Absolute.SpaceBetween
+                        horizontalArrangement = Arrangement.Absolute.Center
                     ) {
-                        Text(
-                            text = "Charities"
-                        )
-
-                        Text(text = "View all", modifier = Modifier.clickable {
-                            navController.navigate(ROUTE_CHARITIES) {
-                                popUpTo(ROUTE_HOME) { inclusive = true }
-                            }
-                        })
-                    }
-
-
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        item {
-                            Card(
-                                elevation = CardDefaults.cardElevation(10.dp)
-                            ) {
-                                Row {
-                                    Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                        Modifier.size(150.dp))
-                                    Text(text = "   item 4")
+                        Card(
+                            modifier = Modifier
+                                .clickable {
+                                    navController.navigate(ROUTE_PERFORMING_ARTS) {
+                                        popUpTo(ROUTE_HOME) { inclusive = true }
+                                    }
                                 }
+                                .fillMaxSize(),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Row{
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp)
+                                )
+                                Text(text = "   Performing Arts")
                             }
                         }
                     }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Absolute.Center
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .clickable {
+                                    navController.navigate(ROUTE_VISUAL_ARTS) {
+                                        popUpTo(ROUTE_HOME) { inclusive = true }
+                                    }
+                                }
+                                .fillMaxSize(),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Row{
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp)
+                                )
+                                Text(text = "   Visual Arts")
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Absolute.Center
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .clickable {
+                                    navController.navigate(ROUTE_FESTIVALS) {
+                                        popUpTo(ROUTE_HOME) { inclusive = true }
+                                    }
+                                }
+                                .fillMaxSize(),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Row{
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp)
+                                )
+                                Text(text = "   Festivals & Fairs")
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Absolute.Center
+                    ) {
+                        Card(
+                            modifier = Modifier
+                                .clickable {
+                                    navController.navigate(ROUTE_SPORTS) {
+                                        popUpTo(ROUTE_HOME) { inclusive = true }
+                                    }
+                                }
+                                .fillMaxSize(),
+                            elevation = CardDefaults.cardElevation(10.dp)
+                        ) {
+                            Row{
+                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                    Modifier.size(100.dp)
+                                )
+                                Text(text = "   Sports & Active Life")
+                            }
+                        }
+                    }
+
+
+
+
                     Spacer(modifier = Modifier.height(100.dp))
                 }
+
+
             }
 
 
