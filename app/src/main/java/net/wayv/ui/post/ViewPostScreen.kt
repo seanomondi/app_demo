@@ -41,6 +41,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -118,51 +119,57 @@ fun ItemList(items: List<Item>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(80.dp))
 
-        Text(text = "ALL EVENTS", fontWeight = FontWeight.Bold, textAlign = TextAlign.Center)
+        Text(text = "ALL EVENTS", fontWeight = FontWeight.Bold)
 
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(1),
             modifier = Modifier
                 .background(Color.White)
-                .padding(10.dp),
-            verticalArrangement = Arrangement.Center
+                .padding(10.dp)
         ) {
 
             items.forEach { item ->
                 item {
                     Card(
                         modifier = Modifier
-                            .background(Color.White)
+                            .padding(10.dp)
+                            .fillMaxWidth(),
+                        elevation = CardDefaults.cardElevation(10.dp)
                     ) {
 
-                        SubcomposeAsyncImage(
-                            model = ImageRequest.Builder(LocalContext.current)
-                                .data(item.imageUrl)
-                                .crossfade(true)
-                                .build(),
-                            loading = {
-                                CircularProgressIndicator()
-                            },
-                            contentDescription = item.eventName,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(10))
-                                .fillMaxWidth()
-                                .height(200.dp)
-                        )
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            SubcomposeAsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data(item.imageUrl)
+                                    .crossfade(true)
+                                    .build(),
+                                loading = {
+                                    CircularProgressIndicator()
+                                },
+                                contentDescription = item.eventName,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(10))
+                                    .fillMaxWidth()
+                                    .height(250.dp)
+                            )
 
-                        Column {
-                            item.eventName?.let { Text(text = it) }
-                            item.eventLocation?.let { Text(text = it) }
-                            item.eventDate?.let { Text(text = it) }
-                            item.eventTime?.let { Text(text = it) }
-                            item.eventCategory?.let { Text(text = it) }
-                            item.eventDescription?.let { Text(text = it) }
+                            Column {
+                                item.eventName?.let { Text(text = it) }
+                                item.eventLocation?.let { Text(text = it) }
+                                item.eventDate?.let { Text(text = it) }
+                                item.eventTime?.let { Text(text = it) }
+                                item.eventCategory?.let { Text(text = it) }
+                                item.eventDescription?.let { Text(text = it) }
+                            }
                         }
 
 
@@ -189,7 +196,7 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
         viewModel.fetchItems()
     }
 
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),

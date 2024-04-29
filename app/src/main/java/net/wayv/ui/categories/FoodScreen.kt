@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -26,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -80,7 +82,7 @@ fun FoodScreen(navController: NavHostController) {
                     .background(Color.White)
             ) {
                 item {
-                    Spacer(modifier = Modifier.height(100.dp))
+                    Spacer(modifier = Modifier.height(80.dp))
 
                     Row(
                         modifier = Modifier
@@ -89,16 +91,19 @@ fun FoodScreen(navController: NavHostController) {
                     ) {
                         Card(
                             modifier = Modifier
+                                .padding(10.dp)
                                 .fillMaxSize(),
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
-                            Row{
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
                                 Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(150.dp)
+                                    Modifier.size(250.dp)
                                 )
-                                Column {
-                                    Text(text = "   item 1")
-                                    Text(text = "   item 2")
+                                Column{
+                                    Text(text = "item 1")
+                                    Text(text = "item 2")
                                 }
                             }
                         }

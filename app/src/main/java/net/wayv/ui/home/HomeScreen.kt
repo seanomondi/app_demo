@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -71,7 +72,7 @@ import wayv.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -142,7 +143,10 @@ fun HomeScreen(navController: NavHostController) {
                             navController.navigate(ROUTE_EXPLORE) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
-                        })
+                        },
+                        textDecoration = TextDecoration.Underline,
+                        fontWeight = FontWeight.Light
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(10.dp))
@@ -213,7 +217,7 @@ fun HomeScreen(navController: NavHostController) {
 
 
 
-                    Spacer(modifier = Modifier.height(15.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
 
 
                     Row(
@@ -229,7 +233,10 @@ fun HomeScreen(navController: NavHostController) {
                             navController.navigate(ROUTE_VIEW_POST) {
                                 popUpTo(ROUTE_HOME) { inclusive = true }
                             }
-                        })
+                        },
+                        textDecoration = TextDecoration.Underline,
+                        fontWeight = FontWeight.Light
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(10.dp))
