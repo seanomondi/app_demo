@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import net.wayv.navigation.ROUTE_ADD_POST
 import net.wayv.navigation.ROUTE_CHARITIES
 import net.wayv.navigation.ROUTE_EXPLORE
@@ -164,8 +165,15 @@ fun HomeScreen(navController: NavHostController) {
                             },
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(100.dp))
+                                AsyncImage(model = "https://images.pond5.com/empty-stage-fashion-show-runway-illustration-252061603_iconl_nowm.jpeg",
+                                    contentDescription = null,
+                                    Modifier.size(100.dp)
+                                    )
+
+
+//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+//                                    Modifier.size(100.dp))
+
                                 Text(text = "   Fashion")
                             }
 

@@ -131,14 +131,13 @@ fun ItemList(items: List<Item>) {
             columns = GridCells.Fixed(1),
             modifier = Modifier
                 .background(Color.White)
-                .padding(10.dp)
         ) {
 
             items.forEach { item ->
                 item {
                     Card(
                         modifier = Modifier
-                            .padding(10.dp)
+                            .padding(5.dp)
                             .fillMaxWidth(),
                         elevation = CardDefaults.cardElevation(10.dp)
                     ) {
@@ -154,7 +153,7 @@ fun ItemList(items: List<Item>) {
                                 loading = {
                                     CircularProgressIndicator()
                                 },
-                                contentDescription = item.eventName,
+                                contentDescription = null,
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(10))
@@ -162,18 +161,25 @@ fun ItemList(items: List<Item>) {
                                     .height(250.dp)
                             )
 
-                            Column {
-                                item.eventName?.let { Text(text = it) }
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                item.eventName?.let { Text(text = it, fontWeight = FontWeight.Bold) }
                                 item.eventLocation?.let { Text(text = it) }
                                 item.eventDate?.let { Text(text = it) }
                                 item.eventTime?.let { Text(text = it) }
                                 item.eventCategory?.let { Text(text = it) }
                                 item.eventDescription?.let { Text(text = it) }
                             }
+
+                            Spacer(modifier = Modifier.height(80.dp))
+
                         }
 
 
                     }
+
+
 
                 }
             }
@@ -181,7 +187,7 @@ fun ItemList(items: List<Item>) {
 
         }
 
-        Spacer(modifier = Modifier.height(80.dp))
+
     }
 }
 
@@ -196,7 +202,7 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
         viewModel.fetchItems()
     }
 
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -232,6 +238,7 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
         content = {
 
             ItemList(items)
+
 
         },
         bottomBar = {
@@ -269,15 +276,7 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
 
                     Spacer(modifier = Modifier.width(45.dp))
 
-//                    IconButton(onClick = {
-//                        navController.navigate(ROUTE_VIEW_POST) {
-//                            popUpTo(ROUTE_HOME) { inclusive = true }
-//                        }
-//                    }) {
-//                        Icon(imageVector = Icons.Default.DateRange, contentDescription = "")
-//                    }
-//
-//                    Spacer(modifier = Modifier.width(30.dp))
+
                 }
             )
 
@@ -286,32 +285,7 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
     )
 
 
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .background(Color.White),
-//        verticalArrangement = Arrangement.Center
-//    ) {
-//
-//        Text(
-//            modifier = Modifier
-//                .clickable {
-//                    navController.navigate(ROUTE_HOME) {
-//                        popUpTo(ROUTE_VIEW_POST) { inclusive = true }
-//                    }
-//                },
-//            text = "go home",
-//            textAlign = TextAlign.Center,
-//            color = MaterialTheme.colorScheme.onSurface
-//        )
-//
-//
-//
-//        ItemList(items)
-//
-//
-//
-//    }
+
 
 
 }
