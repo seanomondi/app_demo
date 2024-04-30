@@ -168,11 +168,7 @@ fun HomeScreen(navController: NavHostController) {
                                 AsyncImage(model = "https://images.pond5.com/empty-stage-fashion-show-runway-illustration-252061603_iconl_nowm.jpeg",
                                     contentDescription = null,
                                     Modifier.size(100.dp)
-                                    )
-
-
-//                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-//                                    Modifier.size(100.dp))
+                                )
 
                                 Text(text = "   Fashion")
                             }
@@ -186,8 +182,11 @@ fun HomeScreen(navController: NavHostController) {
                             },
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(100.dp))
+                                AsyncImage(model = "https://clipart-library.com/8300/2368/burger-with-french-fries-soda-icon-illustration-fast-food-icon-concept-isolated-flat-cartoon-style_138676-1340.jpg",
+                                    contentDescription = null,
+                                    Modifier.size(100.dp)
+                                )
+
                                 Text(text = "   Food & Drink")
                             }
 
@@ -201,8 +200,11 @@ fun HomeScreen(navController: NavHostController) {
                             },
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(100.dp))
+                                AsyncImage(model = "https://media.istockphoto.com/id/1316740716/vector/read-book-education-concept-with-tiny-character-student-reading-open-textbook-for-studying.jpg?s=612x612&w=0&k=20&c=gsPCc7Yc3__AP0h-zAh5rnISDv1QI1vb02rFrD8FjOE=",
+                                    contentDescription = null,
+                                    Modifier.size(100.dp)
+                                )
+
                                 Text(text = "   Lectures & Books")
                             }
 
@@ -215,8 +217,11 @@ fun HomeScreen(navController: NavHostController) {
                             },
                                 elevation = CardDefaults.cardElevation(10.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
-                                    Modifier.size(100.dp))
+                                AsyncImage(model = "https://img.freepik.com/premium-vector/volunteering-volunteer-organization-collects-humanitarian-aid-volunteers-are-holding-letters_491047-317.jpg",
+                                    contentDescription = null,
+                                    Modifier.size(100.dp)
+                                )
+
                                 Text(text = "   Charities")
                             }
                         }
@@ -265,9 +270,11 @@ fun HomeScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Row{
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                AsyncImage(model = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy6KfQNes3oveKHJ2iUGTsnL3dArHu1gpdDwoUi0wrF6JFbCrAF8HOyvxTO5spiZSaSo0&usqp=CAU",
+                                    contentDescription = null,
                                     Modifier.size(100.dp)
                                 )
+
                                 Text(text = "   Performing Arts")
                             }
                         }
@@ -291,9 +298,11 @@ fun HomeScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Row{
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                AsyncImage(model = "https://img.freepik.com/premium-vector/artist-painting-picture-canvas-easel-painter-with-paint-palette-brush-drawing-creative-woman-apron-creates-artwork-creation-process-flat-vector-illustration-isolated-white-background_198278-13925.jpg",
+                                    contentDescription = null,
                                     Modifier.size(100.dp)
                                 )
+
                                 Text(text = "   Visual Arts")
                             }
                         }
@@ -317,9 +326,11 @@ fun HomeScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Row{
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                AsyncImage(model = "https://t4.ftcdn.net/jpg/03/60/58/03/360_F_360580371_4FTntuz62CAG258ZYABPwlaGetlaHrFC.jpg",
+                                    contentDescription = null,
                                     Modifier.size(100.dp)
                                 )
+
                                 Text(text = "   Festivals & Fairs")
                             }
                         }
@@ -343,9 +354,11 @@ fun HomeScreen(navController: NavHostController) {
                             elevation = CardDefaults.cardElevation(10.dp)
                         ) {
                             Row{
-                                Image(painter = painterResource(id = R.drawable.logo), contentDescription = "",
+                                AsyncImage(model = "https://media.istockphoto.com/id/1204568602/vector/crowd-people-run-marathon-vector-illustration-in-color-abstract-effect-isolated.jpg?s=612x612&w=0&k=20&c=HqS98N8y62ow1gS85giX16qG9BuUlGVE7ABZMmoseVI=",
+                                    contentDescription = null,
                                     Modifier.size(100.dp)
                                 )
+                                
                                 Text(text = "   Sports & Active Life")
                             }
                         }
