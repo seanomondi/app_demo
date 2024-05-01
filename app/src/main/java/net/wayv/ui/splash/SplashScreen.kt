@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
+import net.wayv.navigation.ROUTE_HOME
 import net.wayv.navigation.ROUTE_LOGIN
 import wayv.R
 
@@ -45,7 +46,7 @@ fun SplashScreen(navController: NavHostController) {
                 }))
         // Customize the delay time
         delay(1000L)
-        navController.navigate(ROUTE_LOGIN)
+        navController.navigate(ROUTE_HOME)
     }
 
     // Image
