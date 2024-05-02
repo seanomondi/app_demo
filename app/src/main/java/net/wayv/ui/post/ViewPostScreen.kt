@@ -69,6 +69,7 @@ import wayv.R
 
 data class Item(
 
+    val docId: String? = "",
     val imageUrl: String? = "",
     val eventName: String? = "",
     val eventLocation: String? = "",
@@ -101,7 +102,7 @@ class FirestoreViewModel : ViewModel() {
 
             val itemList = mutableListOf<Item>()
             snapshot?.documents?.forEach { document ->
-                val item = document.toObject(Item::class.java)?.copy(eventName = document.id)
+                val item = document.toObject(Item::class.java)?.copy(docId = document.id)
                 item?.let {
                     itemList.add(it)
                 }
@@ -165,9 +166,9 @@ fun ItemList(items: List<Item>) {
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 item.eventName?.let { Text(text = it, fontWeight = FontWeight.Bold) }
-                                item.eventLocation?.let { Text(text = it) }
-                                item.eventDate?.let { Text(text = it) }
-                                item.eventTime?.let { Text(text = it) }
+                                item.eventLocation?.let { Text(text = it, fontWeight = FontWeight.Bold) }
+                                item.eventDate?.let { Text(text = it, fontWeight = FontWeight.Bold) }
+                                item.eventTime?.let { Text(text = it, fontWeight = FontWeight.Bold) }
                                 item.eventCategory?.let { Text(text = it) }
                                 item.eventDescription?.let { Text(text = it) }
                             }
