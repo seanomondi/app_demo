@@ -159,7 +159,7 @@ fun HomeScreen(navController: NavHostController) {
                     ) {
                         item {
                             Card(onClick = {
-                                navController.navigate(ROUTE_FASHION) {
+                                navController.navigate(ROUTE_CHARITIES) {
                                     popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
                             },
@@ -217,7 +217,7 @@ fun HomeScreen(navController: NavHostController) {
                             Spacer(modifier = Modifier.width(10.dp))
 
                             Card(onClick = {
-                                navController.navigate(ROUTE_CHARITIES) {
+                                navController.navigate(ROUTE_FASHION) {
                                     popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
                             },
