@@ -88,16 +88,10 @@ fun HomeScreen(navController: NavHostController) {
                     Text(text = "Home")
                 },
                 navigationIcon = {
-                    Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "")
+
                 },
                 actions = {
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_ADD_POST){
-                            popUpTo(ROUTE_HOME){ inclusive = true }
-                        }
-                    }) {
-                        Icon(Icons.Filled.AddCircle, "")
-                    }
+
                 },
                 scrollBehavior = scrollBehavior,
             )

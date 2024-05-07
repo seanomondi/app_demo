@@ -36,6 +36,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,6 +50,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import net.wayv.navigation.ROUTE_ADD_POST
 import net.wayv.navigation.ROUTE_CHARITIES
 import net.wayv.navigation.ROUTE_EXPLORE
@@ -63,6 +66,7 @@ import net.wayv.navigation.ROUTE_PERFORMING_ARTS
 import net.wayv.navigation.ROUTE_SPORTS
 import net.wayv.navigation.ROUTE_VIEW_POST
 import net.wayv.navigation.ROUTE_VISUAL_ARTS
+import net.wayv.ui.post.Item
 import wayv.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -70,6 +74,31 @@ import wayv.R
 @Composable
 fun ExploreScreen(navController: NavHostController) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    var searchText by remember { mutableStateOf(TextFieldValue()) }
+    var filteredData by remember { mutableStateOf(emptyList<Item>()) }
+    val firestore = Firebase.firestore
+
+    DisposableEffect(searchText.text) {
+        val query = firestore.collection("Events")
+            .whereGreaterThanOrEqualTo("eventName", searchText.text)
+            .whereLessThanOrEqualTo("eventName", searchText.text + "\uf8ff")
+
+        val listener = query.addSnapshotListener { snapshot, error ->
+            if (error != null) {
+                return@addSnapshotListener
+            }
+
+            snapshot?.let {
+                val data = it.toObjects(Item::class.java)
+                filteredData = data
+            }
+        }
+
+        onDispose {
+            listener.remove()
+        }
+    }
+
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -84,17 +113,10 @@ fun ExploreScreen(navController: NavHostController) {
                     Text(text = "Explore")
                 },
                 navigationIcon = {
-                    Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "")
 
                 },
                 actions = {
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_ADD_POST){
-                            popUpTo(ROUTE_EXPLORE){ inclusive = true }
-                        }
-                    }) {
-                        Icon(Icons.Filled.AddCircle, "")
-                    }
+
                 },
                 scrollBehavior = scrollBehavior,
             )
@@ -111,16 +133,14 @@ fun ExploreScreen(navController: NavHostController) {
                 item {
                     Spacer(modifier = Modifier.height(80.dp))
 
-                    var searchText by remember {
-                        mutableStateOf(TextFieldValue())
-                    }
-                        TextField(value = searchText, onValueChange = { searchText = it },
-                            placeholder = { Text(text = "Search")},
-                            modifier = Modifier.fillMaxWidth(),
-                            leadingIcon = {
-                                Icon(imageVector = Icons.Default.Search, contentDescription = "")
-                            }
-                        )
+
+                    TextField(value = searchText, onValueChange = { searchText = it },
+                        placeholder = { Text(text = "Search by name...")},
+                        modifier = Modifier.fillMaxWidth(),
+                        leadingIcon = {
+                            Icon(imageVector = Icons.Default.Search, contentDescription = "")
+                        }
+                    )
 
                     Row(
                         modifier = Modifier

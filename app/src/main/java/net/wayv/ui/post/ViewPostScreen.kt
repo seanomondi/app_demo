@@ -63,6 +63,7 @@ import com.google.firebase.firestore.firestore
 import net.wayv.navigation.ROUTE_ADD_POST
 import net.wayv.navigation.ROUTE_EXPLORE
 import net.wayv.navigation.ROUTE_HOME
+import net.wayv.navigation.ROUTE_LOGIN
 import net.wayv.navigation.ROUTE_VIEW_POST
 import wayv.R
 
@@ -124,8 +125,6 @@ fun ItemList(items: List<Item>) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(80.dp))
-
-        Text(text = "ALL EVENTS", fontWeight = FontWeight.Bold)
 
 
         LazyVerticalGrid(
@@ -215,15 +214,14 @@ fun ViewPostScreen(navController: NavHostController, viewModel: FirestoreViewMod
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text(text = "Posts")
+                    Text(text = "Featured Events")
                 },
                 navigationIcon = {
-                    Icon(painter = painterResource(id = R.drawable.logo), contentDescription = "")
 
                 },
                 actions = {
                     IconButton(onClick = {
-                        navController.navigate(ROUTE_ADD_POST){
+                        navController.navigate(ROUTE_LOGIN){
                             popUpTo(ROUTE_VIEW_POST){ inclusive = true }
                         }
                     }) {
