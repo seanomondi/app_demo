@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
@@ -31,6 +33,7 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -41,9 +44,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -76,6 +82,7 @@ fun HomeScreen(navController: NavHostController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
+
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
 
         topBar = {
@@ -86,6 +93,7 @@ fun HomeScreen(navController: NavHostController) {
                 ),
                 title = {
                     Text(text = "Home")
+
                 },
                 navigationIcon = {
 
@@ -157,7 +165,8 @@ fun HomeScreen(navController: NavHostController) {
                                     popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
                             },
-                                elevation = CardDefaults.cardElevation(10.dp)
+                                elevation = CardDefaults.cardElevation(10.dp),
+                                colors = CardDefaults.cardColors(Color.White)
                             ) {
                                 AsyncImage(model = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQFwmlxg8z3_-Hpf0bCHnVxRwjF2Cq6JOqCA&s",
                                     contentDescription = null,
@@ -176,7 +185,8 @@ fun HomeScreen(navController: NavHostController) {
                                     popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
                             },
-                                elevation = CardDefaults.cardElevation(10.dp)
+                                elevation = CardDefaults.cardElevation(10.dp),
+                                colors = CardDefaults.cardColors(Color.White)
                             ) {
                                 AsyncImage(model = "https://clipart-library.com/8300/2368/burger-with-french-fries-soda-icon-illustration-fast-food-icon-concept-isolated-flat-cartoon-style_138676-1340.jpg",
                                     contentDescription = null,
@@ -196,7 +206,8 @@ fun HomeScreen(navController: NavHostController) {
                                     popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
                             },
-                                elevation = CardDefaults.cardElevation(10.dp)
+                                elevation = CardDefaults.cardElevation(10.dp),
+                                colors = CardDefaults.cardColors(Color.White)
                             ) {
                                 AsyncImage(model = "https://media.istockphoto.com/id/1316740716/vector/read-book-education-concept-with-tiny-character-student-reading-open-textbook-for-studying.jpg?s=612x612&w=0&k=20&c=gsPCc7Yc3__AP0h-zAh5rnISDv1QI1vb02rFrD8FjOE=",
                                     contentDescription = null,
@@ -215,7 +226,8 @@ fun HomeScreen(navController: NavHostController) {
                                     popUpTo(ROUTE_HOME) { inclusive = true }
                                 }
                             },
-                                elevation = CardDefaults.cardElevation(10.dp)
+                                elevation = CardDefaults.cardElevation(10.dp),
+                                colors = CardDefaults.cardColors(Color.White)
                             ) {
                                 AsyncImage(model = "https://media.istockphoto.com/id/1168401897/vector/fashion-models-sketch-hand-drawn-silhouette-pop-art.jpg?s=612x612&w=0&k=20&c=T7arFXpqicjeqfajoaSQQJqoi5MWjMTHg-uijZm3VnQ=",
                                     contentDescription = null,
@@ -269,9 +281,12 @@ fun HomeScreen(navController: NavHostController) {
                                     }
                                 }
                                 .fillMaxSize(),
-                            elevation = CardDefaults.cardElevation(10.dp)
+                            elevation = CardDefaults.cardElevation(10.dp),
+                            colors = CardDefaults.cardColors(Color.White)
                         ) {
-                            Row{
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
                                 AsyncImage(model = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNhrJchXeWCVqv4jddKnzB2vvnsjH7OBTBaQ&s",
                                     contentDescription = null,
                                     modifier = Modifier
@@ -279,7 +294,7 @@ fun HomeScreen(navController: NavHostController) {
                                         .size(100.dp)
                                 )
 
-                                Text(text = "   Performing Arts")
+                                Text(text = "Performing Arts", Modifier.padding(start = 50.dp))
                             }
                         }
                     }
@@ -299,9 +314,12 @@ fun HomeScreen(navController: NavHostController) {
                                     }
                                 }
                                 .fillMaxSize(),
-                            elevation = CardDefaults.cardElevation(10.dp)
+                            elevation = CardDefaults.cardElevation(10.dp),
+                            colors = CardDefaults.cardColors(Color.White)
                         ) {
-                            Row{
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
                                 AsyncImage(model = "https://static.vecteezy.com/system/resources/previews/004/311/270/non_2x/paint-class-tools-canvas-easel-seat-and-wood-frames-free-vector.jpg",
                                     contentDescription = null,
                                     modifier = Modifier
@@ -309,7 +327,7 @@ fun HomeScreen(navController: NavHostController) {
                                         .size(100.dp)
                                 )
 
-                                Text(text = "   Visual Arts")
+                                Text(text = "Visual Arts", Modifier.padding(start = 50.dp))
                             }
                         }
                     }
@@ -329,9 +347,12 @@ fun HomeScreen(navController: NavHostController) {
                                     }
                                 }
                                 .fillMaxSize(),
-                            elevation = CardDefaults.cardElevation(10.dp)
+                            elevation = CardDefaults.cardElevation(10.dp),
+                            colors = CardDefaults.cardColors(Color.White)
                         ) {
-                            Row{
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
                                 AsyncImage(model = "https://media.istockphoto.com/id/1300357920/vector/bazaar-trade-tents-cartoon-vector-illustrations-set-middle-east-marketplace-flat-color.jpg?s=612x612&w=0&k=20&c=qqyVse76nutaIasHY8ZvETnpsftwEJ6kSaqRA-ZYEUM=",
                                     contentDescription = null,
                                     modifier = Modifier
@@ -339,7 +360,7 @@ fun HomeScreen(navController: NavHostController) {
                                         .size(100.dp)
                                 )
 
-                                Text(text = "   Festivals & Fairs")
+                                Text(text = "Festivals & Fairs", Modifier.padding(start = 50.dp))
                             }
                         }
                     }
@@ -359,9 +380,12 @@ fun HomeScreen(navController: NavHostController) {
                                     }
                                 }
                                 .fillMaxSize(),
-                            elevation = CardDefaults.cardElevation(10.dp)
+                            elevation = CardDefaults.cardElevation(10.dp),
+                            colors = CardDefaults.cardColors(Color.White)
                         ) {
-                            Row{
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
                                 AsyncImage(model = "https://media.istockphoto.com/id/1204568602/vector/crowd-people-run-marathon-vector-illustration-in-color-abstract-effect-isolated.jpg?s=612x612&w=0&k=20&c=HqS98N8y62ow1gS85giX16qG9BuUlGVE7ABZMmoseVI=",
                                     contentDescription = null,
                                     modifier = Modifier
@@ -369,7 +393,7 @@ fun HomeScreen(navController: NavHostController) {
                                         .size(100.dp)
                                 )
                                 
-                                Text(text = "   Sports & Active Life")
+                                Text(text = "Sports & Active Life", Modifier.padding(start = 50.dp))
                             }
                         }
                     }
@@ -394,7 +418,7 @@ fun HomeScreen(navController: NavHostController) {
                         navController.navigate(ROUTE_HOME) {
                             popUpTo(ROUTE_HOME) { inclusive = true }
                         }
-                    }) {
+                    }, colors = IconButtonDefaults.iconButtonColors(containerColor = Color.White)) {
                         Icon(imageVector = Icons.Default.Home, contentDescription = "")
                     }
 
