@@ -69,35 +69,13 @@ import net.wayv.navigation.ROUTE_VISUAL_ARTS
 import net.wayv.ui.post.Item
 import wayv.R
 
+
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ExploreScreen(navController: NavHostController) {
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-    var searchText by remember { mutableStateOf(TextFieldValue()) }
-    var filteredData by remember { mutableStateOf(emptyList<Item>()) }
-    val firestore = Firebase.firestore
-
-    DisposableEffect(searchText.text) {
-        val query = firestore.collection("Events")
-            .whereGreaterThanOrEqualTo("eventName", searchText.text)
-            .whereLessThanOrEqualTo("eventName", searchText.text + "\uf8ff")
-
-        val listener = query.addSnapshotListener { snapshot, error ->
-            if (error != null) {
-                return@addSnapshotListener
-            }
-
-            snapshot?.let {
-                val data = it.toObjects(Item::class.java)
-                filteredData = data
-            }
-        }
-
-        onDispose {
-            listener.remove()
-        }
-    }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
 
     Scaffold(
@@ -133,14 +111,6 @@ fun ExploreScreen(navController: NavHostController) {
                 item {
                     Spacer(modifier = Modifier.height(80.dp))
 
-
-                    TextField(value = searchText, onValueChange = { searchText = it },
-                        placeholder = { Text(text = "Search by name...")},
-                        modifier = Modifier.fillMaxWidth(),
-                        leadingIcon = {
-                            Icon(imageVector = Icons.Default.Search, contentDescription = "")
-                        }
-                    )
 
                     Row(
                         modifier = Modifier
